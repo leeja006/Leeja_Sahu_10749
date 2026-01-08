@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main()
+{
+    char password[100];
+    int i;
+    int hasDigit = 0, hasUpper = 0;
+
+    printf("Enter your password: ");
+    scanf("%s", password);
+
+    // Check length
+    if (strlen(password) < 8)
+    {
+        printf("Password is WEAK\n");
+        printf("Reason: Password must be at least 8 characters long.\n");
+        return 0;
+    }
+
+    // Check for digit and uppercase letter
+    for (i = 0; password[i] != '\0'; i++)
+    {
+        if (isdigit(password[i]))
+            hasDigit = 1;
+        if (isupper(password[i]))
+            hasUpper = 1;
+    }
+
+    // Final validation
+    if (hasDigit && hasUpper)
+    {
+        printf("Password is STRONG.\n");
+    }
+    else
+    {
+        printf("Password is WEAK.\n");
+
+        if (!hasDigit)
+            printf("Reason: Password must contain at least one digit.\n");
+        if (!hasUpper)
+            printf("Reason: Password must contain at least one uppercase letter.\n");
+    }
+
+    return 0;
+}
